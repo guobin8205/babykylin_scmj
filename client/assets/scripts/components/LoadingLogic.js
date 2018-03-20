@@ -25,14 +25,12 @@ cc.Class({
         this._isLoading = true;
         var self = this;
         
-        cc.loader.onProgress = function ( completedCount, totalCount,  item ){
+        cc.loader.loadResDir("textures", function ( completedCount, totalCount,  item ){
             //console.log("completedCount:" + completedCount + ",totalCount:" + totalCount );
             if(self._isLoading){
                 self._progress = completedCount/totalCount;
             }
-        };
-        
-        cc.loader.loadResDir("textures", function (err, assets) {
+        }, function (err, assets) {
             self.onLoadComplete();
         });      
     },
